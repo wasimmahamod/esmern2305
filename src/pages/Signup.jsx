@@ -12,9 +12,11 @@ import { MdRemoveRedEye } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { getDatabase, ref, set } from "firebase/database";
 
 const Signup = () => {
   const auth = getAuth();
+  const db = getDatabase();
   let navigate = useNavigate();
   let [email, setEmail] = useState("");
   let [name, setName] = useState("");
@@ -58,6 +60,11 @@ const Signup = () => {
     ) {
       createUserWithEmailAndPassword(auth, email, password)
         .then((user) => {
+          set(ref(db, "users/" + user.user.uid), {
+            fullname: name,
+            email: email,
+            image: "images/profileimage.png",
+          });
           setLoadder(true);
           sendEmailVerification(auth.currentUser).then(() => {
             updateProfile(auth.currentUser, {
@@ -116,12 +123,12 @@ const Signup = () => {
           />
           {/* Same as */}
           <ToastContainer />
-          <div className="w-full md:w-2/4 flex justify-center md:justify-end	">
+          <div className="flex justify-center w-full md:w-2/4 md:justify-end ">
             <div className="mr-0 px-3 lg:px-0 lg:mr-[69px] mt-[25px] lg:mt-[225px]">
               <h1 className="font-poppins text-[30px] md:text-[36px] font-bold  text-secandary mb-3 text-center md:text-left">
                 Get started with easily register
               </h1>
-              <p className="text-center md:text-left font-poppins text-xl text-secandary font-normal">
+              <p className="text-xl font-normal text-center md:text-left font-poppins text-secandary">
                 Free register and you can enjoy it
               </p>
               <div className=" mt-[25px] md:mt-[37px] relative  ">
@@ -219,9 +226,9 @@ const Signup = () => {
               </p>
             </div>
           </div>
-          <div className="hidden md:block  w-2/4	">
+          <div className="hidden w-2/4 md:block ">
             <img
-              className="w-full h-screen object-cover"
+              className="object-cover w-full h-screen"
               src="images/signup.png"
               alt="signup"
             />

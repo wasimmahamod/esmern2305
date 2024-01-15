@@ -108,7 +108,7 @@ const Login = () => {
       />
       {/* Same as */}
       <ToastContainer />
-      <div className="w-2/4 flex justify-end	">
+      <div className="flex justify-end w-2/4 ">
         <div className="mr-[69px] mt-[225px]">
           <h1 className="font-poppins text-[36px] font-bold  text-secandary mb-3">
             Login to your account!
@@ -143,12 +143,12 @@ const Login = () => {
             {passwordShow ? (
               <MdRemoveRedEye
                 onClick={() => setPasswordShow(false)}
-                className=" absolute top-8 right-3 text-2xl"
+                className="absolute text-2xl top-8 right-3"
               />
             ) : (
               <IoMdEyeOff
                 onClick={() => setPasswordShow(true)}
-                className=" absolute top-8 right-3 text-2xl"
+                className="absolute text-2xl top-8 right-3"
               />
             )}
             {error && (
@@ -172,7 +172,7 @@ const Login = () => {
             <div className="mt-2">
               <button
                 onClick={handleForgetPassword}
-                className=" font-poppins text-sm text-secandary  "
+                className="text-sm font-poppins text-secandary"
               >
                 forget Password
               </button>
@@ -180,9 +180,9 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <div className="w-2/4	">
+      <div className="w-2/4 ">
         <img
-          className="w-full h-screen object-cover"
+          className="object-cover w-full h-screen"
           src="images/singin.png"
           alt="signup"
         />
@@ -191,7 +191,7 @@ const Login = () => {
       {forgetModal && (
         <div className="w-full  h-screen bg-[rgba(0,0,0,.8)] absolute top-0 left-0 flex justify-center items-center ">
           <div className="w-[400px]  bg-white p-4 rounded-bl-2xl">
-            <h1 className="text-2xl font-medium font-poppins text-secandary mb-3">
+            <h1 className="mb-3 text-2xl font-medium font-poppins text-secandary">
               Reset Password{" "}
             </h1>
             <input
@@ -201,13 +201,13 @@ const Login = () => {
             />
             <button
               onClick={handleRestMail}
-              className=" py-3 px-4 bg-primary text-white rounded-lg font-poppins mt-3 "
+              className="px-4 py-3 mt-3 text-white rounded-lg bg-primary font-poppins"
             >
               Submit
             </button>
             <button
               onClick={() => setForgetModal(false)}
-              className=" py-3 px-4 bg-red-500 text-white rounded-lg font-poppins mt-3  ml-3"
+              className="px-4 py-3 mt-3 ml-3 text-white bg-red-500 rounded-lg font-poppins"
             >
               Cancel
             </button>
