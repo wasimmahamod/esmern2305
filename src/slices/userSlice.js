@@ -5,7 +5,6 @@ const initialState = {
     ? JSON.parse(localStorage.getItem("userInfo"))
     : "null",
 };
-
 export const userSlice = createSlice({
   name: "user",
   initialState,

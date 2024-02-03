@@ -12,9 +12,11 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
+import { getDatabase, ref, set } from "firebase/database";
 import { userLoginInfo } from "../slices/userSlice";
 
 const Login = () => {
+  const db = getDatabase();
   let dispatch = useDispatch();
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
@@ -84,7 +86,11 @@ const Login = () => {
   let handleGoogleLogin = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
+        set(ref(db, "users/" + result.user.uid), {
+          fullname: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        });
         navigate("/home");
       })
       .catch((error) => {
