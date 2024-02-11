@@ -15,8 +15,11 @@ import {
 import { getAuth, updateProfile } from "firebase/auth";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
+import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({active}) => {
+
+
   const auth = getAuth();
   const storage = getStorage();
   const [imageModal, setImageModal] = useState(false);
@@ -92,19 +95,26 @@ const Sidebar = () => {
             onClick={handleImageUploadmodal}
             className="w-0 h-[100px] bg-[rgba(0,0,0,.7)] absolute top-0 left-0 rounded-full group-hover:w-[100px] flex justify-center items-center "
           >
+
             <FaCloudUploadAlt className="text-2xl text-white " />
+            
+
           </div>
         </div>
       </div>
       <h2 className="mt-3 text-2xl font-bold text-center text-white font-poppins ">
         {data.displayName}
       </h2>
-      <div className="bg-white w-[161px] h-[89px] ml-auto mt-[78px] relative  rounded-tl-3xl rounded-bl-3xl    flex justify-center items-center">
-        <CiHome className="text-[50px] ml-[-42px] text-[#5F35F5]" />
+      <div className={active =='home' ? "bg-white w-[161px] h-[89px] ml-auto mt-[78px] relative  rounded-tl-3xl rounded-bl-3xl    flex justify-center items-center" :" w-[161px] h-[89px] ml-auto mt-[78px] relative  rounded-tl-3xl rounded-bl-3xl    flex justify-center items-center" }>
+        <Link to='/home'>
+        <CiHome className={active=="home" ? "text-[50px] ml-[-42px] text-[#5F35F5]" : "text-[50px] ml-[-42px] text-[#BAD1FF]"} />
+        </Link>
         <div className=" h-[89px] w-2 bg-[#5F35F5] absolute top-0 right-0 shadow-2xl rounded-tl-[25px] rounded-bl-[25px] "></div>
       </div>
-      <div className="bg-transparent w-[161px] h-[89px] ml-auto mt-[78px] relative  rounded-tl-3xl rounded-bl-3xl    flex justify-center items-center">
-        <AiFillMessage className="text-[50px] ml-[-42px] text-[#BAD1FF]" />
+      <div className={active =='message' ? "bg-white w-[161px] h-[89px] ml-auto mt-[78px] relative  rounded-tl-3xl rounded-bl-3xl    flex justify-center items-center" :" w-[161px] h-[89px] ml-auto mt-[78px] relative  rounded-tl-3xl rounded-bl-3xl    flex justify-center items-center" }>
+        <Link to="/message">
+        <AiFillMessage className={active=="message" ? "text-[50px] ml-[-42px] text-[#5F35F5]" : "text-[50px] ml-[-42px] text-[#BAD1FF]"} />
+        </Link>
         <div className=" h-[89px] w-2 bg-[#5F35F5] absolute top-0 right-0 shadow-2xl rounded-tl-[25px] rounded-bl-[25px] "></div>
       </div>
       <div className="bg-transparent w-[161px] h-[89px] ml-auto mt-[78px] relative  rounded-tl-3xl rounded-bl-3xl    flex justify-center items-center">
