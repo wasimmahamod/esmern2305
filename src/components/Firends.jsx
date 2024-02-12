@@ -8,8 +8,10 @@ import {
   push,
   remove,
 } from "firebase/database";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { activeChatInfo } from "../slices/chatSlice";
 const Firends = () => {
+  let dispatch = useDispatch()
   const data = useSelector((state) => state.userLoginInfo.userInfo);
   const [friendList, setFriendList] = useState([]);
   const db = getDatabase();
@@ -51,6 +53,16 @@ const Firends = () => {
     }
     console.log(item.senderid);
   };
+
+  let handleMsgInfo=(item)=>{
+    console.log(item)
+    if(data.uid ==item.senderid){
+
+      dispatch(activeChatInfo({name:item.recivername , id: item.reciverid}))
+    }else{
+      dispatch(activeChatInfo({name:item.sendername , id: item.senderid}))
+    }
+  }
   return (
     <div className="mt-10">
       <div className="p-5 shadow-xl rounded-2xl">
@@ -62,7 +74,7 @@ const Firends = () => {
         </div>
         <div className="w-full h-[300px] overflow-y-scroll ">
           {friendList.map((item) => (
-            <div className="flex items-center justify-between pb-5 border-b ">
+            <div onClick={()=>handleMsgInfo(item)} className="flex items-center justify-between pb-5 border-b ">
               {console.log(item)}
               <img src="images/groupimg.png" alt="groupimg" />
               <div>
