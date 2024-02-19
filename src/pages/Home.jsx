@@ -33,7 +33,7 @@ const Home = () => {
       {data.emailVerified ? (
         <div className="flex justify-between ">
           <div className="w-[186px] ">
-            <Sidebar active='home' />
+            <Sidebar active="home" />
           </div>
           <div className="w-[427px]  h-[500px] ">
             <Group />

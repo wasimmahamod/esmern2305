@@ -13,7 +13,7 @@ const Msg = () => {
         <Firends />
       </div>
       <div className=" w-[60%] h-screen  ">
-       <MessageBox/>
+        <MessageBox />
       </div>
     </div>
   );
